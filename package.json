@@ -1,0 +1,25 @@
+{
+  "name": "express.io-middleware",
+  "description": "Extends express.io application, adding middleware functionality",
+  "version": "0.9.0",
+  "dependencies": {
+    "underscore": "~1.5.1"
+  },
+  "author": {
+    "name": "Yurij Mikhalevich",
+    "email": "0@39.yt"
+  },
+  "keywords": [
+    "express.io",
+    "middleware",
+    "socket.io",
+    "express",
+    "io"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cat-corporation/express.io-middleware"
+  },
+  "main": "index",
+  "readmeFilename": "README.md"
+}
