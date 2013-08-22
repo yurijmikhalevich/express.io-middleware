@@ -33,14 +33,14 @@ module.exports = function(app) {
       }
     }
     if (_.isFunction(next)) {
-      return registerRoute(this.router, route, next);
+      return registerRoute(this.router, this.middleware, route, next);
     } else {
       _results = [];
       for (var key in next) {
         if (!next.hasOwnProperty(key)) {
           continue;
         }
-        _results.push(registerRoute(this.router, "" + route + ":" + key, next[key]));
+        _results.push(registerRoute(this.router, this.middleware, "" + route + ":" + key, next[key]));
       }
       return _results;
     }
@@ -67,16 +67,17 @@ module.exports = function(app) {
  * Registers new route in the route subsystem
  *
  * @param {Object} router Router object, expects app.io.router
+ * @param {Array} middlewares Middlwares array, expects app.io.middleware
  * @param {String} route Signal name
  * @param {Function} func Signal handler
  * @returns {Function} New route handler
  */
-function registerRoute(router, route, func) {
+function registerRoute(router, middlewares, route, func) {
   var previousFunc = router[route];
   if (previousFunc) { // if another handler exists, adding new in chain
     return router[route] = createRouteFunction(previousFunc, func);
   } else { // if there is no another handler
-    app.io.middleware.forEach(function (middleware) { // compile all middlewares in chain
+    middlewares.forEach(function (middleware) { // compile all middlewares in chain
       if (middleware[0].test(route)) {
         if (previousFunc) {
           previousFunc = router[route] = createRouteFunction(previousFunc, middleware[1]);
