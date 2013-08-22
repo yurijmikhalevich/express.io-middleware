@@ -1,6 +1,7 @@
 # express.io-middleware
 
-Express.io extension, which adds middleware and multiroute functionality to app.io.
+Express.io extension, which adds middleware and multiroute functionality to app.io. In addition, it adds app.io.event
+and app.io.namespace properties, which contains signal's name and namespace (before ':' part) respectively.
 
 Tested with express.io 1.1.x.
 

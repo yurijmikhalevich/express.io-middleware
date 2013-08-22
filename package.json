@@ -14,7 +14,8 @@
     "middleware",
     "socket.io",
     "express",
-    "io"
+    "io",
+    "event name"
   ],
   "repository": {
     "type": "git",
