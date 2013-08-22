@@ -82,12 +82,12 @@ function registerRoute(router, middlewares, route, func) {
         if (previousFunc) {
           previousFunc = router[route] = createRouteFunction(previousFunc, middleware[1]);
         } else {
-          previousFunc = router[route] = middleware[1];
+          previousFunc = router[route] = createRouteFunction(middleware[1], route);
         }
       }
     });
     if (previousFunc) { // if there are any middlewares add new handler in chain
-      return router[route] = createRouteFunction(previousFunc, func, route);
+      return router[route] = createRouteFunction(previousFunc, func);
     } else { // otherwise init new handler chain with new handler
       return router[route] = createRouteFunction(func, route);
     }
@@ -99,24 +99,17 @@ function registerRoute(router, middlewares, route, func) {
  *
  * @param {Function} previousFunc Previous function in chain or new function in chain, according to second argument
  * @param {Function|String} func New function in chain or Signal name
- * @param {String} [route] Signal name
  * @returns {Function}
  */
-function createRouteFunction(previousFunc, func, route) {
-  if (route) {
-    return function (req, next) {
-      req.io.event = route;
-      req.io.namespace = route.split(':')[0];
-      previousFunc(req, function () { func(req, next); });
-    }
-  } else if (typeof func === 'function') {
+function createRouteFunction(previousFunc, func) {
+   if (typeof func === 'function') {
     return function (req, next) {
       previousFunc(req, function () { func(req, next); });
     }
   } else {
     return function (req, next) {
-      req.io.event = route;
-      req.io.namespace = route.split(':')[0];
+      req.io.event = func;
+      req.io.namespace = func.split(':')[0];
       previousFunc(req, next);
     }
   }
