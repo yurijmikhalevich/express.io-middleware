@@ -1,7 +1,7 @@
 {
   "name": "express.io-middleware",
   "description": "This Express.io extension adds middleware and multiroute functionality to app.io",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "dependencies": {
     "underscore": "~1.5.1"
   },
@@ -14,12 +14,11 @@
     "middleware",
     "socket.io",
     "express",
-    "io",
     "event name"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/cat-corporation/express.io-middleware"
+    "url": "git://github.com/39dotyt/express.io-middleware"
   },
   "main": "index",
   "readmeFilename": "README.md"
