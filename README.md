@@ -1,6 +1,6 @@
 # express.io-middleware
 
-# _DISCLAIMER_: it's abandoned. If you want to maintain this module, please contact me via 0@39.yt.
+# This module is abandoned. If you want to maintain this module, please contact me via 0@39.yt
 
 This Express.io extension adds middleware and multiroute functionality to app.io. It also adds app.io.event
 and app.io.namespace properties, which contains signal name and namespace (before ':' part) respectively.
